@@ -32,7 +32,7 @@ function renderizarEnderecos() {
     console.log(endereco.cep)
 
     li.innerHTML +=
-      "&nbsp Cidade:  " + endereco.cidade + "&nbsp Estado:  " + endereco.estado
+      "&nbsp  |  Cidade:  " + endereco.cidade + "&nbsp  |  Estado:  " + endereco.estado
 
     li.innerHTML += ` &nbsp &nbsp <button type="button"
                       class="btn btn-danger btn-sm"
