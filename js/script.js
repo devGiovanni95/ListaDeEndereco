@@ -30,8 +30,18 @@ function renderizarEnderecos() {
     li.classList.add("my-3")
     li.innerHTML = endereco.cep
     console.log(endereco.cep)
+    if(endereco.cidade === undefined){
+      li.innerHTML +=
+      "&nbsp Ops CEP invalido"
 
-    li.innerHTML +=
+    li.innerHTML += ` &nbsp &nbsp <button type="button"
+                      class="btn btn-danger btn-sm"
+                      onclick="removerTarefa(${endereco.id})">
+                      Remover
+                      </button>
+                      `
+    }else{
+      li.innerHTML +=
       "&nbsp  |  Cidade:  " + endereco.cidade + "&nbsp  |  Estado:  " + endereco.estado
 
     li.innerHTML += ` &nbsp &nbsp <button type="button"
@@ -40,6 +50,8 @@ function renderizarEnderecos() {
                       Remover
                       </button>
                       `
+    }
+    
 
     lista.appendChild(li)
   })
@@ -51,6 +63,12 @@ renderizarEnderecos()
 const btnAdicionar = document.getElementById("btnAdicionar")
 const txtCep = document.getElementById("txtCep")
 btnAdicionar.addEventListener("click", function () {
+  const tmn = document.getElementById("txtCep").value
+
+  console.log(txtCep.length)
+  if(tmn.length !== 8){
+    alert("Ops verifique os numeros digitados")
+  }else{
   const endereco = document.getElementById("txtCep").value
   fetch(`https://viacep.com.br/ws/${endereco}/json/`)
     .then((response) => response.json()) //
@@ -62,4 +80,6 @@ btnAdicionar.addEventListener("click", function () {
         cidade: dados.localidade,
       })
     })
+  }
 })
+
